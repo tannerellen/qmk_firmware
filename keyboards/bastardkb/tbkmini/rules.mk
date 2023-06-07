@@ -1,11 +1,3 @@
-# MCU name
-# MCU = atmega32u4
-
-# Bootloader selection
-# # ProMicro Controllers use the catarina bootloader
-# BOOTLOADER = caterina
-# BOOTLOADER = atmel-dfu
-
 # Build Options
 #   change yes to no to disable
 #

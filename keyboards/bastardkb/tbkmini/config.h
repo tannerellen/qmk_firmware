@@ -41,6 +41,8 @@
 #define ONESHOT_TIMEOUT 5000  /* Time (in ms) before the one shot key is released */
 
 // Home Row Mods
+// https://docs.qmk.fm/#/tap_hold
+
 // Configure the global tapping term (default: 200ms)
 #define TAPPING_TERM 180
 
