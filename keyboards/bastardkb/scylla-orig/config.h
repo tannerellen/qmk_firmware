@@ -18,39 +18,10 @@
 
 #pragma once
 
-#if ENABLE_APPLE_FN_KEY
-#   define VENDOR_ID 0x05AC
-#   define PRODUCT_ID 0x021E
-#else
-#   define VENDOR_ID 0xA8F8
-#   define PRODUCT_ID 0x1829
-#endif
-
-/* Key matrix configuration. */
-#define MATRIX_ROWS 8 // Rows are doubled-up.
-#define MATRIX_COLS 6
-
-/* Set 0 if debouncing isn't needed. */
-#define DEBOUNCE 5
-
-#define MASTER_RIGHT
-
-#define TAPPING_TOGGLE 2
-
-#define ONESHOT_TAP_TOGGLE 1  /* Tapping this number of times holds the key until tapped once again. */
-#define ONESHOT_TIMEOUT 5000  /* Time (in ms) before the one shot key is released */
-
-// Home Row Mods
-// Configure the global tapping term (default: 200ms)
-#define TAPPING_TERM 160
-
-// Enable rapid switch from tap to hold, disables double tap hold auto-repeat.
-#define QUICK_TAP_TERM 160
-
 /* RGB settings. */
-#define RGBLED_NUM 42
+#define RGBLED_NUM 58
 #define RGBLED_SPLIT \
-    { 21, 21 }
+    { 29, 29 }
 
 /* RGB matrix support. */
 #ifdef RGB_MATRIX_ENABLE
