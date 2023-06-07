@@ -42,10 +42,13 @@
 
 // Home Row Mods
 // Configure the global tapping term (default: 200ms)
-#define TAPPING_TERM 160
+#define TAPPING_TERM 180
 
 // Enable rapid switch from tap to hold, disables double tap hold auto-repeat.
-#define QUICK_TAP_TERM 160
+#define QUICK_TAP_TERM 0
+
+// Force mod key hold if another key is pressed
+#define PERMISSIVE_HOLD
 
 /* RGB settings. */
 #define RGBLED_NUM 42
