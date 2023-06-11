@@ -44,13 +44,14 @@
 // https://docs.qmk.fm/#/tap_hold
 
 // Configure the global tapping term (default: 200ms)
-#define TAPPING_TERM 180
+#define TAPPING_TERM 160
 
 // Enable rapid switch from tap to hold, disables double tap hold auto-repeat.
-#define QUICK_TAP_TERM 0
+#define QUICK_TAP_TERM 50
 
 // Force mod key hold if another key is pressed
 #define PERMISSIVE_HOLD
+// #define HOLD_ON_OTHER_KEY_PRESS
 
 /* RGB settings. */
 #define RGBLED_NUM 42
