@@ -16,7 +16,16 @@
  */
 
 #pragma once
-#include "config_common.h"
+
+// Workarounds for sleep/wake issues
+#define USB_SUSPEND_WAKEUP_DELAY 250
+
+// NOTE: There is a bug in AVR deep sleep, which
+// causes the MCU to stop responding in some cases.
+// Disabling the watchdog prevents the MCU from entering
+// power down, while still turning off LEDs, audio, etc.
+// See qmk_firmware/issues/20087 for background
+#undef WDT_vect
 
 #if ENABLE_APPLE_FN_KEY
 #   define VENDOR_ID 0x05AC
@@ -26,23 +35,12 @@
 #   define PRODUCT_ID 0x1829
 #endif
 
-#define DEVICE_VER 0x0001
-#define MANUFACTURER Bastard Keyboards
-#define PRODUCT Scylla
-
 #define MATRIX_ROWS 10
 #define MATRIX_COLS 6
-#define DIODE_DIRECTION COL2ROW
-#define MATRIX_ROW_PINS { F7, B1, B3, B2, B6 }
-#define MATRIX_COL_PINS { B5, B4, E6, D7, C6, D4 }
 
-#define RGB_DI_PIN D2
-#define RGBLED_NUM 58
-#define RGBLED_SPLIT { 29, 29 }
-#define RGBLIGHT_LIMIT_VAL 120
-#define RGBLIGHT_ANIMATIONS
+/* Set 0 if debouncing isn't needed. */
 #define DEBOUNCE 5
-#define SOFT_SERIAL_PIN D0
+
 #define MASTER_RIGHT
 
 #define TAPPING_TOGGLE 2
@@ -51,29 +49,30 @@
 #define ONESHOT_TIMEOUT 5000  /* Time (in ms) before the one shot key is released */
 
 // Home Row Mods
+// https://docs.qmk.fm/#/tap_hold
+
 // Configure the global tapping term (default: 200ms)
 #define TAPPING_TERM 160
 
-// Prevent normal rollover on alphas from accidentally triggering mods.
-#define IGNORE_MOD_TAP_INTERRUPT
-
 // Enable rapid switch from tap to hold, disables double tap hold auto-repeat.
-#define TAPPING_FORCE_HOLD
+#define QUICK_TAP_TERM 50
 
-#ifdef RGBLIGHT_ENABLE
-#   define RGBLED_NUM 58
-#   define RGBLED_SPLIT { 29, 29 }
-#   define RGBLIGHT_LIMIT_VAL 50
-#   define RGBLIGHT_ANIMATIONS
-#endif
+// Force mod key hold if another key is pressed
+#define PERMISSIVE_HOLD
+// #define HOLD_ON_OTHER_KEY_PRESS
 
-// RGB matrix support
+/* RGB settings. */
+#define RGBLED_NUM 58
+#define RGBLED_SPLIT \
+    { 29, 29 }
+
+/* RGB matrix support. */
 #ifdef RGB_MATRIX_ENABLE
 #    define SPLIT_TRANSPORT_MIRROR
-#    define DRIVER_LED_TOTAL 58 // Number of LEDs
-#    define RGB_MATRIX_SPLIT { 29, 29 }
+#    define RGB_MATRIX_LED_COUNT RGBLED_NUM
+#    define RGB_MATRIX_SPLIT RGBLED_SPLIT
 #    define RGB_MATRIX_MAXIMUM_BRIGHTNESS 50
-#    define RGB_MATRIX_STARTUP_VAL RGB_MATRIX_MAXIMUM_BRIGHTNESS
+#    define RGB_MATRIX_DEFAULT_VAL RGB_MATRIX_MAXIMUM_BRIGHTNESS
 #    define RGB_DISABLE_WHEN_USB_SUSPENDED
 #    define RGB_MATRIX_KEYPRESSES
 #endif

@@ -18,6 +18,16 @@
 
 #pragma once
 
+// Workarounds for sleep/wake issues
+#define USB_SUSPEND_WAKEUP_DELAY 250
+
+// NOTE: There is a bug in AVR deep sleep, which
+// causes the MCU to stop responding in some cases.
+// Disabling the watchdog prevents the MCU from entering
+// power down, while still turning off LEDs, audio, etc.
+// See qmk_firmware/issues/20087 for background
+#undef WDT_vect
+
 #if ENABLE_APPLE_FN_KEY
 #   define VENDOR_ID 0x05AC
 #   define PRODUCT_ID 0x021E
